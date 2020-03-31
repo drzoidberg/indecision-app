@@ -3,30 +3,52 @@ console.log('app.js is running!');
 
 const app = {
     title: 'Indecision',
-    subtitle: 'Note-taking app!',
+    subtitle: 'Put your life in the hands of a computer!',
     item01: 'item one',
     item02: 'item two',
-    options: [
-        'one',
-        'two'
-    ]
+    options: []
 }
 
 
-const template01 = (
-    <div>
-        <h1>Indecision</h1>
-        <h2>Note-taking app!</h2>
-        <p>Here are your options:</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-    </div>
-    <form>
-        <input></input>
-    </form>
-);
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+    }
+
+    render();
+}
+
+const onRemoveAll = () => {
+    app.options = [];
+    render();
+}
+
+const render = () => {
+    const template01 = (
+        <div>
+            <h1>{app.title}}</h1>
+            <h2>{app.subtitle}</h2>
+            <p>{app.options.length > 0 ? 'Here are your options' : ''}</p>
+            <p>{app.options.length}</p>
+            <ol>
+                <li>Item one</li>
+                <li>Item two</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button>Add option</button>
+                <button onClick={onRemoveAll}>Remove all</button>
+            </form>
+        </div>
+    );
+
+    ReactDOM.render(template01, appRoot);
+}
 
 const appRoot = document.getElementById('app');
-ReactDOM.render(template01, appRoot);
+render();

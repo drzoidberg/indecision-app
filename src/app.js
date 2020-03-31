@@ -31,13 +31,18 @@ const onRemoveAll = () => {
 const render = () => {
     const template01 = (
         <div>
-            <h1>{app.title}}</h1>
+            <h1>{app.title}</h1>
             <h2>{app.subtitle}</h2>
             <p>{app.options.length > 0 ? 'Here are your options' : ''}</p>
             <p>{app.options.length}</p>
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+
+                {
+                    app.options.map((option) => {
+                        return <li id={option}>{option}</li>
+                    })
+                }
+
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>

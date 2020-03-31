@@ -35,8 +35,7 @@ var render = function render() {
         React.createElement(
             'h1',
             null,
-            app.title,
-            '}'
+            app.title
         ),
         React.createElement(
             'h2',
@@ -56,16 +55,13 @@ var render = function render() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'Item one'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item two'
-            )
+            app.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { id: option },
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',

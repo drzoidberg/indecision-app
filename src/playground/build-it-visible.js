@@ -1,31 +1,27 @@
-console.log('buildit-visible is working!');
-const appRoot = document.getElementById('app');
+let visibility = false;
 
-let pVisible = true;
 
-const onChangeVisibility = () => {
-    pVisible = !pVisible
+const toggleVisibility = () => {
+    visibility = !visibility;
     render();
 }
 
 const render = () => {
-    const template = (
+    const jsx = (
         <div>
-            <h1>Toggle Visible</h1>
-            <button onClick={onChangeVisibility}>Toggle visibility of the next paragraph</button>
-
-            {
-                pVisible ?
-                    <p style={{visibility: 'visible'}}>This is el susodicho paragraph</p>
-                :
-                    <p style={{visibility: 'hidden'}}>This is el susodicho paragraph</p>
-
-            }
+            <h1>Visibility Toggle</h1>
+            <button onClick={toggleVisibility}>
+                {visibility ? 'Hide details' : 'Show details'}
+            </button>
+            {visibility && (
+                <div>
+                    <p>Hey, these are some details</p>
+                </div>
+            )}
         </div>
     );
 
-    ReactDOM.render(template, appRoot);
+    ReactDOM.render(jsx, document.getElementById('app'));
 }
-
 
 render();

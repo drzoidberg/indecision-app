@@ -5,5 +5,7 @@ import IndecisionApp from './components/IndecisionApp';
 
 import './styles/styles.scss'
 
+console.log('blop');
+
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
